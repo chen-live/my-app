@@ -19,7 +19,11 @@ function resolve (dir) {
 
 
 module.exports = {
-  // 指定入口文件上下文，为当前目录，而不是根目录
+  /**
+   * 指定入口文件上下文，为当前目录，而不是根目录
+   * path.resolve(__dirname,'../')会被解析为__dirname/../,
+   * 当前路径为 my-app/build/webpack.base.config.js,即context上下文将指向my-app/
+   */
   context: path.resolve(__dirname, '../'),
   // 指定入口main.js
   entry: {
@@ -35,8 +39,13 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+  // 功能型函数
   resolve: {
+    //定义模块查找路径
+    modules:[resolve('node_modules')],
+    // 查找文件顺序
     extensions: ['.js', '.vue', '.json'],
+    // 配置别名
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
