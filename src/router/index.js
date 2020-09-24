@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import QARouter from "../QA/QARouter"
 Vue.use(Router)
 
 export default new Router({
@@ -18,7 +19,9 @@ export default new Router({
       component: function (resolve) {
         require(['../view/login'], resolve)
       },
-    }
+    },
+    ...QARouter,
+    { path: "*", redirect: '/' },
   ],
   scrollBehavior: () => ({ x: 0, y: 0 }),
 })

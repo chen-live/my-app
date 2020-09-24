@@ -31,6 +31,13 @@ module.exports = {
   },
   // 输出
   output: {
+    /**
+     * @crossOriginLoading
+     * false：禁用跨域加载
+     * anonymous：不带凭证进行跨域
+     * use-credentials：带凭证进行跨域
+    */ 
+    crossOriginLoading:'anonymous',
     // 输出文件目录，__dirname/dist=>src/dist
     path: config.build.assetsRoot,
     // 利用hash生成文件名
@@ -41,7 +48,7 @@ module.exports = {
   },
   // 功能型函数
   resolve: {
-    //定义模块查找路径
+    //定义模块查找顺序
     modules:[resolve('node_modules')],
     // 查找文件顺序
     extensions: ['.js', '.vue', '.json'],
@@ -52,6 +59,9 @@ module.exports = {
     }
   },
   module: {
+    noParse:function(content){
+      return /lodash/.test(content);
+    },
     rules: [
       {
         test: /\.vue$/,
