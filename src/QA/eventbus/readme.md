@@ -9,11 +9,11 @@
 ### 初始化
 
 > 目录  
-> event-bus.js
-> eventBus.vue
-> children
->> decrement.vue
->> increment.vue
+> event-bus.js  
+> eventBus.vue  
+> children  
+>> decrement.vue  
+>> increment.vue  
 
 1. 创建事件总线(Vue的实例对象)
 2. 导出事件总线
@@ -242,32 +242,42 @@
         }
         ```
 
-    + **`$attrs` `$listeners`**
-        结构 demo1引入demo2,demo2引入demo3
-        > demo1  
-        >> demo2
-        >>> demo3
-    > increment.vue
+        > increment.vue
 
-    ```javascript
-    export default {
-      inject:['message','changeMessage'],
-      mounted(){
-        console.log('message: '+this.message)// message: hello world
-        setTimeout(()=>{
-          this.changeMessage("hello vue")
-        },5000)
-        setInterval(()=>{
-          console.log(this.message.message) // 五秒内打印 hello world 五秒后打印 hello vue
-        },1000)
-      }
-    }
-    ```
+        ```javascript
+        export default {
+          inject:['message','changeMessage'],
+          mounted(){
+            console.log('message: '+this.message)// message: hello world
+            setTimeout(()=>{
+              this.changeMessage("hello vue")
+            },5000)
+            setInterval(()=>{
+              console.log(this.message.message) // 五秒内打印 hello world 五秒后打印 hello vue
+            },1000)
+          }
+        }
+        ```
+
+    + **`$attrs` `$listeners`**
+        结构: demo1引入demo2,demo2引入demo3
+        > demo1  
+        >> demo2  
+        >>> demo3  
+
+        **$attrs**
+        + 父级通过标签内传值,不包含style,class等事件属性,子级通过`$attrs`接收  
+        + 若子级`props`中有同名属性,则`$attrs`中的同名属性会剔除  
+        + 若子级`props`中有同名属性,向孙级传值时,会优先使用data中声明的值,然后寻找父级标签中传递的值,最后使用props中的默认值
+
+        **$listeners**
+        + 通过v-on注册监听事件,子级通过$listeners接收,可以直接使用以改变父级的值  
+        + 孙级使用继续向下传递即可  
 
 ### vueRouter嵌套路由
 
-1. 使用children定义子路由
-2. 子路由中的path不要加`/`
-3. 父组件中需要添加一个`<router-view></router-view>`标签进行占位,否则无法跳转
-4. 跳转时需要跳转路由全名
-5. 子路由组件中`$parent`默认指向父路由组件
+1. 使用children定义子路由  
+2. 子路由中的path不要加`/`  
+3. 父组件中需要添加一个`<router-view></router-view>`标签进行占位,否则无法跳转  
+4. 跳转时需要跳转路由全名  
+5. 子路由组件中`$parent`默认指向父路由组件实例  

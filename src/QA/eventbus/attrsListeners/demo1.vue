@@ -1,7 +1,14 @@
 <template>
   <div>
     Demo1
-    <Demo2 name="attr" :foo="foo" :boo="boo" :coo="coo" :doo="doo" />
+    <Demo2
+      name="attr"
+      :foo="foo"
+      :boo="boo"
+      :coo="coo"
+      :doo="doo"
+      v-on="{ changeFoo, changeBoo, changeCoo, changeDoo }"
+    />
   </div>
 </template>
 
@@ -13,11 +20,27 @@ export default {
   },
   data() {
     return {
-      foo: "Hello World!",
-      boo: "Hello Javascript!",
-      coo: "Hello Vue",
-      doo: "Last",
+      foo: "foo!",
+      boo: "boo!",
+      coo: "coo!",
+      doo: "doo!",
     };
+  },
+  mounted(){
+  },
+  methods: {
+    changeFoo(text) {
+      this.foo = text;
+    },
+    changeBoo(text) {
+      this.boo = text;
+    },
+    changeCoo(text) {
+      this.coo = text;
+    },
+    changeDoo(text) {
+      this.doo = text;
+    },
   },
 };
 </script>
