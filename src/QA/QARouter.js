@@ -28,22 +28,31 @@ export default [
    * @listeners
    */
   {
-    path:"/attrsListeners",
-    name:"attrsListerners",
-    component:()=>import("./eventbus/attrsListeners/demo1"),
-    children:[
+    path: "/attrsListeners",
+    name: "attrsListerners",
+    component: () => import("./eventbus/attrsListeners/demo1"),
+    children: [
       {
-        path:'attrsListenersdemo2',
-        name:'attrsListenersdemo2',
-        component:()=>import("./eventbus/attrsListeners/demo2"),
-        children:[
+        path: 'attrsListenersdemo2',
+        name: 'attrsListenersdemo2',
+        component: () => import("./eventbus/attrsListeners/demo2"),
+        children: [
           {
-            path:'attrsListenersdemo3',
-            name:'attrsListenersdemo3',
-            component:()=>import("./eventbus/attrsListeners/demo3"),
+            path: 'attrsListenersdemo3',
+            name: 'attrsListenersdemo3',
+            component: () => import("./eventbus/attrsListeners/demo3"),
           }
         ]
       }
     ]
+  },
+  /**
+   * @vuex
+   */
+  {
+    path: "/vuex",
+    name: 'vuex',
+    component: () => import("./Vuex/index")
+
   }
 ] 

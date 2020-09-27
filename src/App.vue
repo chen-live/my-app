@@ -1,21 +1,26 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
     <keep-alive>
-      <router-view/>
+      <router-view />
     </keep-alive>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App",
+  components: {},
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
+  },
+};
 </script>
 
-<style>
+<style >
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
